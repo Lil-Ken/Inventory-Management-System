@@ -365,7 +365,7 @@ public class Main {
                 }
                 case 2 -> searchProductsMenu();
                 case 3 -> filterProductsMenu();
-                case 4 -> sortProductsMenu(scanner);
+                case 4 -> sortProductsMenu();
                 case 0 -> clearConsole();
                 default -> System.out.println("Invalid option. Please choose again.");
             }
@@ -492,7 +492,7 @@ public class Main {
             return;
         }
 
-        // Fetch the existing product details first
+        // Get the existing product details first
         Product existingProduct = ProductManagementService.getProductById(productId);
         if (existingProduct == null) {
             System.out.println("Product not found.");
@@ -555,7 +555,7 @@ public class Main {
             return;
         }
 
-        // Fetch the product by ID
+        // Get the product by ID
         Product product = ProductManagementService.getProductById(productId);
         if (product == null) {
             System.out.println("Product not found.");
@@ -607,7 +607,7 @@ public class Main {
         System.out.println("---------------------------------------------------------------------------------------------------");
 
         for (Order order : orders) {
-            String productName = ProductManagementService.getProductById(order.getProductId()).getName(); // Assuming there's a method to get product by ID
+            String productName = ProductManagementService.getProductById(order.getProductId()).getName();
             System.out.printf("| %-5d | %-10d | %-10d | %-30s | %-10d | %-15s |\n",
                     order.getId(),
                     order.getUserId(),
@@ -656,7 +656,7 @@ public class Main {
             System.out.println("---------------------------------------------------------------------------------------------------");
 
             for (Order order : orders) {
-                String productName = ProductManagementService.getProductById(order.getProductId()).getName(); // Assuming there's a method to get product by ID
+                String productName = ProductManagementService.getProductById(order.getProductId()).getName();
                 System.out.printf("| %-5d | %-10d | %-10d | %-30s | %-10d | %-15s |\n",
                         order.getId(),
                         order.getUserId(),
@@ -832,7 +832,7 @@ public class Main {
         clearConsole();
     }
 
-    private static void sortProductsMenu(Scanner scanner) {
+    private static void sortProductsMenu() {
         clearConsole();
         System.out.println("Sort Products:");
         System.out.println("1. Sort by Name");
@@ -881,7 +881,7 @@ public class Main {
     }
 
     private static void orderProduct(Customer customer) {
-        Wallet wallet = new Wallet(); // Assuming Wallet class exists and is initialized here
+        Wallet wallet = new Wallet();
 
         if (ProductManagementService.hasProducts()) {
             viewProducts();
@@ -895,7 +895,7 @@ public class Main {
             }
 
             System.out.print("Quantity: ");
-            int quantity = InputValidationUtils.getValidatedInt(1, Integer.MAX_VALUE);
+            int quantity = InputValidationUtils.getValidatedInt(1, 1000);
 
             Product product = ProductManagementService.getProductById(productId);
             if (product == null) {
@@ -935,10 +935,10 @@ public class Main {
                         OrderManagementService.placeOrder(order);
 
                         System.out.println("Order placed successfully.");
-                        break;  // Exit the loop after successful payment and order placement
+                        break;
                     } else {
                         System.out.println("Order cancelled.");
-                        break;  // Exit the loop if payment is not confirmed
+                        break;
                     }
                 } else {
                     System.out.println("Insufficient balance. Your current balance is: RM" + currentBalance);
@@ -952,7 +952,7 @@ public class Main {
                         wallet.topUp(customer.getId(), topUpAmount);
                     } else {
                         System.out.println("Order cancelled.");
-                        break;  // Exit the loop if the user decides not to top up
+                        break;
                     }
                 }
             }
@@ -978,7 +978,7 @@ public class Main {
         System.out.println("--------------------------------------------------------------------------------------");
 
         for (Order order : orders) {
-            String productName = ProductManagementService.getProductById(order.getProductId()).getName(); // Assuming there's a method to get product by ID
+            String productName = ProductManagementService.getProductById(order.getProductId()).getName();
             System.out.printf("| %-5d | %-30s | %-10d | %-10d | %-15s |\n",
                     order.getId(),
                     productName,
@@ -1092,7 +1092,7 @@ public class Main {
                     Transaction transaction = new Transaction(transactionId, customer.getId(), amount, timestamp);
                     TransactionManagementService.recordTransaction(transaction);
                 }
-                case 2 -> viewWalletTransactionHistory(customer);  // New method to view transaction history
+                case 2 -> viewWalletTransactionHistory(customer);
             }
         } while (walletOption != 0);
         clearConsole();
