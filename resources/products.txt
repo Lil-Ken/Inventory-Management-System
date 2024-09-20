@@ -1,0 +1,15 @@
+1,Phone Case,15.0,499,OtterBox
+2,Screen Protector,9.00,1000,Belkin
+3,Wireless Charger,29.0,300,Anker
+4,Bluetooth Headphones,49.0,199,Sony
+5,Car Mount,19.00,400,iOttie
+6,Power Bank,24.0,599,Mophie
+7,USB-C Cable,12.0,1499,Amazon Basics
+8,Phone Ring Holder,7.00,800,Spigen
+9,Earbuds,29.0,249,JBL
+10,Phone Stand,14.0,690,Lamicall
+11,Charging Dock,39.00,350,Belkin
+12,Phone Camera Lens,24.0,449,Moment
+13,Waterproof Case,19.00,550,LifeProof
+14,Portable Speaker,34.00,300,JBL
+15,Phone Cleaning Kit,8.00,900,Whoosh

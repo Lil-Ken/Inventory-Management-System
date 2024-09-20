@@ -1,0 +1,4 @@
+1,ken,666666,admin
+2,david,777777,customer
+3,chao ze,111111,customer
+4,jian wei,222222,customer
