@@ -9,6 +9,7 @@ import java.util.Map;
 public class Wallet {
 
     private static final String WALLET_FILE = "resources/wallets.txt";
+    // user id, balance
     private Map<Integer, Double> balances;
 
     public Wallet() {
@@ -16,7 +17,7 @@ public class Wallet {
         loadBalances();
     }
 
-    // Load balances from file into the map
+    // load from the file
     private void loadBalances() {
         List<String> walletData = FileHandler.readFile(WALLET_FILE);
         for (String line : walletData) {
@@ -27,7 +28,7 @@ public class Wallet {
         }
     }
 
-    // Save balances from the map to the file
+    // Save balances to the file
     private void saveBalances() {
         List<String> walletData = balances.entrySet().stream()
                 .map(entry -> entry.getKey() + "," + entry.getValue())
@@ -68,6 +69,7 @@ public class Wallet {
 
     // Display the current balance for a specific user
     public void displayBalance(int userId) {
+        loadBalances();
         double balance = balances.getOrDefault(userId, 0.0);
         System.out.println("Current balance: RM" + balance);
     }
